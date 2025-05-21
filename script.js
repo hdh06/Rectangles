@@ -11,9 +11,19 @@ class Rectangle{
         this.boxHeight = 50;
         this.posX = Math.random() * (canvas.width - this.boxWidth);
         this.posY = Math.random() * (canvas.height - this.boxHeight); 
-        let dir = [-1, 1];
-        this.dirX = dir[Math.floor(Math.random() * 2)];
-        this.dirY = dir[Math.floor(Math.random() * 2)]; 
+        this.dir = [-1, 1, 0];
+        this.dirX = this.dir[Math.floor(Math.random() * 3)];
+        this.dirY = this.dir[Math.floor(Math.random() * 3)]; 
+        while (this.dirX == 0 && this.dirY == 0){
+            this.dirX = this.dir[Math.floor(Math.random() * 3)];
+            this.dirY = this.dir[Math.floor(Math.random() * 3)]; 
+        }
+
+        this.isSizing = Math.floor(Math.random() * 2);
+        if (this.isSizing == 0){
+            this.boxWidth = Math.floor(Math.random() * 100);
+            this.boxHeight = Math.floor(Math.random() * 100);
+        }
     }
 
     draw(ctx){
@@ -21,8 +31,10 @@ class Rectangle{
         ctx.fillRect(this.posX, this.posY, this.boxWidth, this.boxHeight);
         this.posX += this.dirX;
         this.posY += this.dirY;
-        this.boxWidth += this.dirX;
-        this.boxHeight += this.dirY;
+        if (this.isSizing == 1){
+            this.boxWidth += this.dirX;
+            this.boxHeight += this.dirY;
+        }
         if (this.boxWidth >= 0){
             if (this.posX + this.boxWidth > canvas.width || this.posX < 0)
                 this.dirX = -this.dirX;
