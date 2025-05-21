@@ -22,10 +22,17 @@ class Rectangle{
         this.posY += this.dirY;
         this.boxWidth += this.dirX;
         this.boxHeight += this.dirY;
-        if (this.posX + this.boxWidth > canvas.width || this.posX < 0)
-            this.dirX = -this.dirX;
-        if (this.posY + this.boxHeight > canvas.height || this.posY < 0)
-            this.dirY = -this.dirY;
+        if (this.boxWidth >= 0){
+            if (this.posX + this.boxWidth > canvas.width || this.posX < 0)
+                this.dirX = -this.dirX;
+        }else if (this.posX > canvas.width || this.posX + this.boxWidth < 0)
+                this.dirX = -this.dirX;
+
+        if (this.boxHeight >= 0){
+            if (this.posY + this.boxHeight > canvas.height || this.posY < 0)
+                this.dirY = -this.dirY;
+        }else if (this.posY > canvas.height || this.posY + this.boxHeight < 0)
+                this.dirY = -this.dirY;
     }
 }
 
