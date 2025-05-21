@@ -11,8 +11,9 @@ class Rectangle{
         this.boxHeight = 50;
         this.posX = Math.random() * (canvas.width - this.boxWidth);
         this.posY = Math.random() * (canvas.height - this.boxHeight); 
-        this.dirX = 1;
-        this.dirY = 1; 
+        let dir = [-1, 1];
+        this.dirX = dir[Math.floor(Math.random() * 2)];
+        this.dirY = dir[Math.floor(Math.random() * 2)]; 
     }
 
     draw(ctx){
